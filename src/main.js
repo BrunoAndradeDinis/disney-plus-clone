@@ -2,7 +2,22 @@ document.addEventListener("DOMContentLoaded", () => {
   // pegando os buttons com o data pre-definido
   const buttons = document.querySelectorAll("[data-tab-button]");
   const questions = document.querySelectorAll("[data-faq-question]");
+  const heroSection = document.querySelector(".hero");
+  const alturaHero = heroSection.clientHeight; // pegando a altura, o posicionamento do hero
 
+  window.addEventListener('scroll', ()=>{
+    const posicaoAtual = window.scrollY
+
+
+    if(posicaoAtual < alturaHero){
+      ocultaElementosDoHeader()
+    }
+    else{
+      exibeElementosDoHeader()
+    }
+  })
+
+  // seção de atrações, lógica das abas
   for (let i = 0; i < buttons.length; i++) {
     buttons[i].addEventListener("click", (button) => {
       const tabTarget = button.target.dataset.tabButton; // pegando o valor do atributo tabButton
@@ -14,11 +29,23 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // evento de clique nas questions da faq
+  // seção faq accordion, evento de clique nas questions da faq
   for (let i = 0; i < questions.length; i++) {
     questions[i].addEventListener("click", abreOuFecharesposta);
   }
 });
+
+function ocultaElementosDoHeader(){
+  const header = document.querySelector('header')
+
+  header.classList.add('header--is-hidden')
+}
+
+function exibeElementosDoHeader(){
+  const header = document.querySelector('header')
+
+  header.classList.remove('header--is-hidden')
+}
 
 function abreOuFecharesposta(e) {
   const classe = "faq__questions__item--is-open";
