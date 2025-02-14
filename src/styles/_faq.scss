@@ -33,10 +33,10 @@
       }
 
       &__answer {
-        // padding: 24px;
         height: 0;
         overflow: hidden;
         padding: 0 24px;
+        transition: height, .5s ease;
       }
 
       &--is-open {
@@ -46,7 +46,7 @@
 
         .faq__questions__item__answer {
           height: auto;
-          transition: height, .3s ease;
+          transition: height, .5s ease;
           padding: 0 24px 24px;
         }
       }
